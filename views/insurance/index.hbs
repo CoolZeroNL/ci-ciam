@@ -1,3 +1,36 @@
+	   <!--Header-->
+    <div class="header clearfix">
+      <div class="container">
+        <div class="logo"><a href="/"><img src="/images/insurance_logo.svg"></a></div>
+              <div class="hamburger-menu">
+                <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+        <div class="header-right">
+          <a href="#" class="contact-btn">Contact Us</a>
+          <a href="/open-account" class="open-btn">Get a quote</a>
+          {{#unless loggedIn}}<a href="/login" class="login-btn">Login</a>{{/unless}}
+          {{#if loggedIn}}<a href="/app/profile" class="login-btn" style="margin: 0 10px;">Profile</a>
+          <a href="/logout" class="login-btn">Logout</a>{{/if}}
+        </div>
+
+        <div class="main-menu">
+          <ul class="clearfix">
+             <li><a href="#">Homeowners1</a></li>
+             <li><a href="#">Business</a></li>
+             <li><a href="#">Car</a></li>
+             <li><a href="#">Resources</a></li>
+             <li><a href="#">News</a></li>
+             <li><a href="#">Claim Information</a></li>
+                       <li class="menu-cta account"><a href="/open-account">Open an Account</a></li>
+                       <li class="menu-cta login"><a href="/login">Login</a></li>
+             <li><a href="#">More</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
 	<!--Banner-->
 	<div class="banner insurance-banner">
 		<div class="container">
@@ -69,3 +102,11 @@
 			</div>
 		</div>
 	</div>
+
+    <!--footer-wrap-->
+    	<div class="sa_footer-wrap sa_airline">
+        	<div class="sa_wrapper clearfix">
+            	by Insurance Copyright © <script>document.write(new Date().getFullYear());</script>
+            </div>
+        </div>
+    <!--footer-wrap-->

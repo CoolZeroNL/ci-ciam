@@ -10,15 +10,18 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var bbfn = require('./functions.js');
 
+var APP = process.env.APP || "insurance";
+console.log(APP)
+
 // Use Passport with OpenId Connect strategy to
 // Authenticate users with IBM Cloud Identity Connect
 var passport = require('passport')
 var OpenIDStrategy = require('passport-openidconnect').Strategy
 
 var index = require('./routes/index');
-var setup = require('./routes/setup');
+var setup = require('./routes/' + APP + '/setup');
 var profile = require('./routes/profile');
-var openaccount = require('./routes/open-account');
+var openaccount = require('./routes/' + APP + '/open-account');
 
 function titleCase(string) {
   var sentence = string.toLowerCase().split(" ");
@@ -29,7 +32,7 @@ function titleCase(string) {
 }
 
 // edit this URL with your base URL for IBM Cloud Identity OIDC default endpoint
-var APP = process.env.APP || "Demo Site";
+// var APP = process.env.APP || "Demo Site";
 
 // Configure the OpenId Connect Strategy
 // with credentials obtained from env details (.env)

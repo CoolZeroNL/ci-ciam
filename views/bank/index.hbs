@@ -1,0 +1,214 @@
+	   <!--Header-->
+    <div class="header clearfix">
+      <div class="container">
+        <div class="logo"><a href="/"><img src="/images/logo.svg"></a></div>
+              <div class="hamburger-menu">
+                <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+        <div class="header-right">
+          <a href="#" class="contact-btn">Contact Us</a>
+          <a href="/open-account" class="open-btn">Open an Account</a>
+          {{#unless loggedIn}}<a href="/login" class="login-btn">Login</a>{{/unless}}
+          {{#if loggedIn}}<a href="/app/profile" class="login-btn" style="margin: 0 10px;">Profile</a>
+          <a href="/logout" class="login-btn">Logout</a>{{/if}}
+        </div>
+
+        <div class="main-menu">
+          <ul class="clearfix">
+			<li><a href="#">Bank Account</a></li>
+			<li><a href="#">Saving</a></li>
+			<li><a href="#">Transfer Money</a></li>
+			<li><a href="#">Credit Cards</a></li>
+			<li><a href="#">Loans</a></li>
+			<li><a href="#">Investments</a></li>
+				<li class="menu-cta account"><a href="/open-account">Open an Account</a></li>
+				<li class="menu-cta login"><a href="/login">Login</a></li>
+			<li><a href="#">More</a></li>			 
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+	{{!-- <!--Content Area-->
+	<!--Hero Section-->
+    <div class="sa_hero-section">
+    	<div class="sa_wrapper">
+    		<h2>Fly Away With Me<br>Choose Your Flight.</h2>
+    		<div class="sa_search-type">
+    			<ul>
+    				<li class="sa_selected"><a href="#"><img src="../../images/type-icon1.svg"> Flight</a></li>
+    				<li><a href="#"><img src="../../images/type-icon2.svg"> Flight+Hotel</a></li>
+    				<li><a href="#"><img src="../../images/type-icon3.svg"> Flight+Car</a></li>
+    			</ul>
+    			<div class="sa_search-type-box">
+    				<form action="airline-search-flight.html" method="post">
+    					<div class="sa_form-column sa_first-col sa_large-col">
+    						<div class="sa_search-input"><img src="../../images/field-icon-plane.svg"><input type="text" placeholder="From"></div>
+    						<div class="sa_search-input"><img src="../../images/field-icon-plane.svg"><input type="text" placeholder="To"></div>
+    					</div>
+    					<div class="sa_form-column sa_middle-col">
+    						<div class="sa_search-date">
+    							<span>Departure</span>
+    							<big>09</big>
+    							<span>Departure</span>
+    						</div>
+    					</div>
+    					<div class="sa_form-column sa_middle-col">
+    						<div class="sa_search-date">
+    							<span>Round Trip</span>
+    							<big>+</big>
+    						</div>
+    					</div>
+    					<div class="sa_form-column sa_last-col sa_large-col">
+    						<div class="sa_search-input" name="passangers">
+    							<img src="../../images/field-icon-pass.svg">
+    							<select>
+    								<option selected>1 Passenger</option>
+    								<option value="2">2 Passengers</option>
+    								<option value="3">3 Passengers</option>
+    								<option value="4">4 Passengers</option>
+    								<option value="5">5 Passengers</option>
+    							</select>
+    						</div>
+    						<div class="sa_search-input" name="class">
+    							<img src="../../images/field-icon-class.svg">
+    							<select>
+    								<option value="eco" selected>Economy Class</option>
+    								<option value="busi">Business Class</option>
+    								<option value="busi">First Class</option>
+    							</select>
+    						</div>
+    					</div>
+    					<div class="sa_form-column"><button type="submit"><img src="../../images/search.svg"></button></div>
+    				</form>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    
+    
+    <!--Services-->
+    
+    	<div class="sa_wrapper">
+    		<div class="sa_three-column-row">
+    			<h2>BigJet Airlines</h2>
+    			<div class="sa_column-one">
+    				<img src="../../images/icon1.svg">
+    				<h3>Manage My Booking</h3>
+    				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam luctus turpis at consectetur imperdiet. </p>
+    				<a href="#">Learn More</a>
+    			</div>
+    			<div class="sa_column-one">
+    				<img src="../../images/icon2.svg">
+    				<h3>Check In</h3>
+    				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam luctus turpis at consectetur imperdiet. </p>
+    				<a href="#">Learn More</a>
+    			</div>
+    			<div class="sa_column-one">
+    				<img src="../../images/icon3.svg">
+    				<h3>Check Flight Status</h3>
+    				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam luctus turpis at consectetur imperdiet. </p>
+    				<a href="#">Learn More</a>
+    			</div>
+			</div>
+		</div> --}}
+
+    {{!-- <!--footer-wrap-->
+    	<div class="sa_footer-wrap sa_airline">
+        	<div class="sa_wrapper clearfix">
+            	by BlueJet Copyright © <script>document.write(new Date().getFullYear());</script>
+            </div>
+        </div>
+    <!--footer-wrap--> --}}
+
+
+
+	<!--Banner-->
+	<div class="banner">
+		<div class="container">
+			<div class="banner-caption">
+				<h1>Being in Control of Your Finances</h1>
+				<p>Financial advice that gives you the armour to protect what’s yours.</p>
+				<a href="#">Our Services</a>
+			</div>
+		</div>
+	</div>
+	
+	<!--Content Area-->
+	<div class="container">
+		<div class="content-area">
+			<h1>Our Services</h1>
+			<div class="column-wrap clearfix">
+				<div class="col-3">
+					<div class="column-item">
+						<img src="../../images/icon_1.svg">
+						<h2>Sales & Trading</h2>
+						<p>Collaboratively administrate empowered markets via plug and play networks.</p>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="column-item">
+						<img src="../../images/icon_2.svg">
+						<h2>Financial Advisors</h2>
+						<p>Collaboratively administrate empowered markets via plug and play networks.</p>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="column-item">
+						<img src="../../images/icon_3.svg">
+						<h2>Investment Planning</h2>
+						<p>Collaboratively administrate empowered markets via plug and play networks.</p>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="column-item">
+						<img src="../../images/icon_4.svg">
+						<h2>Tax Consulting</h2>
+						<p>Collaboratively administrate empowered markets via plug and play networks.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--Footer-->
+	<div class="footer">
+		<div class="container">
+			TrustMeBank plc is registered in Findland No.SC327000.Registered Office: The Mound Stokholm EH1 1YZ. Authorised by the Prudential Regulation Authority and regulated by the Financial Conduct Authority and the Prudential Regulation Authority under registration no. 169628.
+		</div>
+	</div>
+	
+	<!--Popup-->
+	<div class="popup">
+		<div class="popup-title clearfix">
+			<img rel="pop-logo" src="../../images/logo-white.svg"> <div class="separator"></div>
+			<span>Security Online</span>
+			<a href="#" class="close-popup"></a>
+		</div>
+		<div class="popup-container">
+			<div class="callout">
+				<img src="../../images/banker.png">
+				<h3>David Tate</h3>
+				<span class="subtitle">Cyber Security Advisor</span>
+				<div class="bubble arrow_box">FinanceBank would like to ensure your safe online actions, therefore we join forces with IBM security to protect you from malicious online fraud.</div>
+				<a href="#" class="large-btn"><span>Get Protected Now!</span></a>
+				<p>By clicking this button you agree to <a href="#">terms and conditions</a></p>
+			</div>
+			<div class="video-container">
+				Learn more about how we <strong>protect</strong> you from this video
+				<div class="video-player">
+					<img src="../../images/ibm_security.png">
+					<a href="#"><img src="../../images/play.png"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.2/jquery.min.js"></script>
+	<script src="../../js/init.js"></script>
+	<script src="../../../internal/js/mute-login-btn.js"></script>
+	
+</body>
+</html>

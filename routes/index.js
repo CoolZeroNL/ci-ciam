@@ -3,6 +3,9 @@ var request = require('request');
 var _ = require('lodash');
 var bbfn = require('../functions.js');
 var router = express.Router();
+var APP = process.env.APP || "insurance";
+console.log(APP)
+
 
 function evaluateAttr(attribute) {
   if (attribute == 'true') {
@@ -14,9 +17,24 @@ function evaluateAttr(attribute) {
 // GET homepage
 router.get('/', function(req, res, next) {
   var loggedIn = ((req.session.loggedIn) ? true : false);
-  res.render('insurance/index', {
+  res.render(APP + '/index', {
     loggedIn: loggedIn
   });
+});
+
+// GET setup
+router.get('/setup', function(req, res, next) {
+  var loggedIn = ((req.session.loggedIn) ? true : false);
+  res.render(APP + '/setup', {
+    APP: process.env.APP,
+    baseUri: process.env.OIDC_CI_BASE_URI,
+    APIclientId: process.env.API_CLIENT_ID,
+    OIDCclientId: process.env.OIDC_CLIENT_ID,
+    OIDCredirectUri: process.env.OIDC_REDIRECT_URI,
+    MFAgroup: process.env.MFAGROUP
+  });
+
+
 });
 
 router.get('/app/downloadme', function(req, res, next) {
@@ -32,7 +50,7 @@ router.get('/app/downloadme', function(req, res, next) {
 
 router.get('/app/dashboard', function(req, res, next) {
   var loggedIn = ((req.session.loggedIn) ? true : false);
-  res.render('insurance/dashboard', {
+  res.render(APP + '/dashboard', {
     loggedIn: loggedIn
   });
 });
@@ -131,7 +149,7 @@ router.get('/app/profile', function(req, res, next) {
         }
         console.log(buildExtProfile)
 
-        res.render('insurance/profile', {
+        res.render(APP + '/profile', {
           user: me,
           loggedIn: loggedIn,
           quotes: quoteCount,
@@ -196,7 +214,7 @@ router.post('/app/preferences', function(req, res, next) {
 FORGOT PASSWORD
 */
 router.get('/app/forgot-password', function(req, res, next) {
-  res.render('insurance/resetpassword', {
+  res.render(APP + '/resetpassword', {
     layout: false
   });
 });
@@ -212,7 +230,7 @@ router.post('/app/forgot-password', function(req, res, next) {
       bbfn.getUserID(user, accessToken, function(err, body) {
         var userId = body.id;
         if (body === false) {
-          res.render('insurance/login-message', {
+          res.render(APP + '/login-message', {
             title: "Forgot password",
             message: "A password reset attempt has been performed and sent to your registered email address, if you did not receive a code, then please contact support for more information.",
             layout: false,
@@ -228,7 +246,7 @@ router.post('/app/forgot-password', function(req, res, next) {
               if (err) {
                 console.log(err);
               } else {
-                res.render('insurance/otpverify', {
+                res.render(APP + '/otpverify', {
                   title: "Forgot password",
                   message: "Enter the code that was sent to your registered email address, if you did not receive a code, then please contact support for more information.",
                   forgotPassword: true,
@@ -269,7 +287,7 @@ router.post('/app/forgot-password-verify', function(req, res, next) {
             console.log(err);
           } else {
             if (body === false) {
-              res.render('insurance/otpverify', {
+              res.render(APP + '/otpverify', {
                 title: "Forgot password",
                 message: "The code you entered was incorrect, please enter the code again.",
                 action: "/app/forgot-password-verify",
@@ -289,14 +307,14 @@ router.post('/app/forgot-password-verify', function(req, res, next) {
                   console.log(err);
                 } else {
                   if (body === false) {
-                    res.render('insurance/login-message', {
+                    res.render(APP + '/login-message', {
                       title: "Forgot password",
                       message: "There was an issue resetting your password, please contact the support line at 1(800)555-BLUE.",
                       layout: false,
                       button: "Return to login"
                     });
                   } else {
-                    res.render('insurance/login-message', {
+                    res.render(APP + '/login-message', {
                       title: "Forgot password",
                       message: "A new password has been sent to your registered email address if it exists. If you did not receive a code, then please contact support for more information.",
                       layout: false,
@@ -317,7 +335,7 @@ router.get('/app/forgot-username', function(req, res, next) {
   if (loggedIn === true) {
     res.redirect('/app/profile');
   } else {
-    res.render('insurance/recoverusername', {
+    res.render(APP + '/recoverusername', {
       layout: false
     });
   }
@@ -361,7 +379,7 @@ router.get('/app/deleteme', function(req, res, next) {
   if (admin) {
     res.redirect('/app/profile');
   } else {
-    res.render('insurance/deleteme', {
+    res.render(APP + '/deleteme', {
       layout: false,
       name: req.session.userprofile.name.givenName + " " + req.session.userprofile.name.familyName,
       action: '/app/deleteme',
@@ -376,7 +394,7 @@ router.post('/app/deleteme', function(req, res, next) {
   var form = req.body;
 
   if (form.name != req.session.userprofile.name.givenName + " " + req.session.userprofile.name.familyName) {
-    res.render('insurance/deleteme', {
+    res.render(APP + '/deleteme', {
       layout: false,
       name: req.session.userprofile.name.givenName + " " + req.session.userprofile.name.familyName,
       action: '/app/deleteme',
@@ -396,7 +414,7 @@ router.post('/app/deleteme', function(req, res, next) {
             res.redirect('/logout');
           } else {
             //fail
-            res.render('insurance/deleteme', {
+            res.render(APP + '/deleteme', {
               layout: false,
               name: req.session.userprofile.name.givenName + " " + req.session.userprofile.name.familyName,
               action: '/app/deleteme',
@@ -414,7 +432,7 @@ router.post('/app/deleteme', function(req, res, next) {
 Change password
 */
 router.get('/app/change-password', function(req, res, next) {
-  res.render('insurance/changepassword', {
+  res.render(APP + '/changepassword', {
     layout: false,
     action: '/app/change-password',
     error: false,
@@ -422,7 +440,7 @@ router.get('/app/change-password', function(req, res, next) {
   });
 });
 router.get('/app/recover-username', function(req, res, next) {
-  res.render('insurance/recoverusername', {
+  res.render(APP + '/recoverusername', {
     layout: false,
     action: '/app/recover-username',
     error: false,
@@ -449,7 +467,7 @@ router.post('/app/recover-username', function(req, res, next) {
         } else {
           if (recoverVars.step != '2') {
             console.log("We're on step 1!")
-            res.render('insurance/otpverify', {
+            res.render(APP + '/otpverify', {
               title: "Recover username",
               message: "Enter the code that was sent to your registered email address, if you did not receive a code, then please contact support for more information.",
               action: "/app/recover-username",
@@ -463,14 +481,14 @@ router.post('/app/recover-username', function(req, res, next) {
           } else {
             console.log("We're on step 2!")
             if (body.responseCode == 200) {
-              res.render('insurance/login-message', {
+              res.render(APP + '/login-message', {
                 title: "Your username",
                 message: `Your username is: ${body.userName}`,
                 layout: false,
                 button: "Return to login"
               });
             } else {
-              res.render('insurance/otpverify', {
+              res.render(APP + '/otpverify', {
                 title: "Recover username",
                 message: "The code you entered was incorrect, please enter the code again. If you did not receive a code, your account might have not been found.",
                 action: "/app/recover-username",
@@ -504,14 +522,14 @@ router.post('/app/change-password', function(req, res, next) {
       console.log(err);
     } else {
       if (body === true) {
-        res.render('insurance/login-message', {
+        res.render(APP + '/login-message', {
           title: "Change password successful",
           message: "Your password has been modified. You may exit this window or click the button below to return to your profile.",
           layout: false,
           button: "Return home"
         });
       } else {
-        res.render('insurance/changepassword', {
+        res.render(APP + '/changepassword', {
           layout: false,
           action: '/app/change-password',
           error: true,
@@ -525,7 +543,7 @@ router.post('/app/change-password', function(req, res, next) {
 Enroll SMS
 */
 router.get('/app/enroll/sms', function(req, res, next) {
-  res.render('insurance/enroll-sms', {
+  res.render(APP + '/enroll-sms', {
     layout: false,
     action: '/app/enroll/sms'
   });
@@ -545,7 +563,7 @@ router.post('/app/enroll/sms', function(req, res, next) {
         } else {
           if (typeof body.messageId != 'undefined' && body.messageId == 'CSIAH0642E') {
             // Bad phone
-            res.render('insurance/enroll-sms', {
+            res.render(APP + '/enroll-sms', {
               layout: false,
               action: '/app/enroll/sms',
               error: true,
@@ -553,7 +571,7 @@ router.post('/app/enroll/sms', function(req, res, next) {
             });
           } else {
             // Good phone
-            res.render('insurance/otpverify', {
+            res.render(APP + '/otpverify', {
               title: "Two-factor enrollment",
               message: "Enter the code that was sent to the phone number provided.",
               sub: number,
@@ -592,7 +610,7 @@ router.post('/app/enroll/sms/verify', function(req, res, next) {
             console.log(err);
           } else {
             if (body === false) {
-              res.render('insurance/otpverify', {
+              res.render(APP + '/otpverify', {
                 title: "Two-factor enrollment",
                 message: "The code you entered was incorrect, please enter the code again.",
                 action: "/app/enroll/sms/verify",
@@ -617,14 +635,14 @@ router.post('/app/enroll/sms/verify', function(req, res, next) {
                   console.log(err);
                 } else {
                   if (body === false) {
-                    res.render('insurance/login-message', {
+                    res.render(APP + '/login-message', {
                       title: "Two-factor authentication",
                       message: "There was an issue modifying your account, please contact the support line at 1(800)555-BLUE.",
                       layout: false,
                       button: "Return home"
                     });
                   } else {
-                    res.render('insurance/login-message', {
+                    res.render(APP + '/login-message', {
                       title: "Two-factor authentication",
                       message: "Your new security factor is now enrolled and ready to be used the next time you log in.",
                       layout: false,

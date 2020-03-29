@@ -1,0 +1,389 @@
+{{!-- <!--Banner-->
+	<div class="banner blue-bg" style="max-height: none;">
+		<div class="container">
+			<div class="banner-caption">
+				<h1>Get insure1d</h1>
+				<p>Welcome. Apply in minutes.</p>
+			</div>
+		</div>
+	</div>
+
+  	<!--Content Area-->
+	<div class="container">
+		<div class="content-area">
+			<form action="{{action}}" method="post">
+				<div class="input-list clear">
+					{{#unless loggedIn}}
+					<h3>Create an account an existing provider</h3>
+					<div class="tx--social" style="margin:auto;max-width:600px">
+						<a href="/login-google" class="social-button" id="google-connect"> <span>Google</span></a>
+						<a href="/login-linkedin" class="social-button" id="linkedin-connect"> <span>LinkedIn</span></a>
+					</div>
+					<h3>Or fill out the form below</h3>
+					{{/unless}}
+					{{#if loggedIn}}
+					<h3 style="margin-left:35px;">Person requesting quote</h3>
+					{{/if}}
+					<div class="input-list-box">
+						<div class="formRow">
+							<label>First name</label>
+							<input type="text" name="givenName" placeholder="First name" {{#if loggedIn}}readonly="readonly" value="{{givenName}}" style="color:#9e9e9e"{{/if}} onFocus="this.placeholder = ''">
+							<div class="inputLine"></div>
+						</div>
+					</div>
+					<div class="input-list-box">
+						<div class="formRow">
+							<label>Last name</label>
+							<input type="text" name="familyName" placeholder="Last name" {{#if loggedIn}}readonly="readonly" value="{{familyName}}" style="color:#9e9e9e"{{/if}}onFocus="this.placeholder = ''">
+							<div class="inputLine"></div>
+						</div>
+					</div><div class="input-list-box">
+						<div class="formRow">
+							<label>Email</label>
+							<input type="email" name="email" placeholder="Email" {{#if loggedIn}}readonly="readonly" value="{{email}}" style="color:#9e9e9e"{{/if}} onFocus="this.placeholder = ''">
+							<div class="inputLine"></div>
+						</div>
+					</div>
+					<div class="input-list-box">
+						<div class="formRow-bottom clearfix">
+							<input class="input-cta" type="submit" value="Get a quote">
+						</div>
+					</div>
+					<div style="display:inline-block;margin: 0  35px;">
+							{{#if loggedIn}}<a href="#">I would like to request a quote for someone else.</a>{{/if}}
+							<p>By requesting a quote, you agree to have your information utilized to build your personalized quote. Your inforamtion will be apart of the automatic deletion procedure if the quote is not accepted. Further details on this process is outlined in our <a href="#">terms and conditions</a>.</p>
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+    <div style="display: none;" class="fancy-popup" id="fancy-popup">
+    	<div class="popup-title">
+    		<h2>Terms of Use</h2>
+        </div>
+        <ol>
+        	<li>I confirm, for the purposes of this Demo, I will not use as username and password any characters/figures/symbols that form any corporate or personal accounts credentials but rather I will use
+            fictitious ones.</li>
+            <li>I confirm that my use of this Demo is voluntary, at my discretion and I will use it for promoting IBM brand and products as part of working for IBM.</li>
+            <li>I agree that IBM will use the information created by my use of this Demo (typed and behavioral) for its business and research objectives.</li>
+            <li>I agree that IBM is allowed to preserve such information in a cloud environment and to freely transfer such information across borders.</li>
+            <li>The said information generated in this Demo will not be preserved for more than 90 days.</li>
+        </ol>
+	</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.2/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.4/dist/jquery.fancybox.min.js"></script>
+
+	<script src="/javascripts/init.js"></script> --}}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Open A New Account - TrustMeBank</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png">
+<link rel="manifest" href="../../favicon/site.webmanifest">
+<link rel="mask-icon" href="../../favicon/safari-pinned-tab.svg" color="#7a6f6f">
+<link rel="shortcut icon" href="../../favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-config" content="../../favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<link href="../../fonts/fonts.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.4/dist/jquery.fancybox.min.css" />
+<link href="../../style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+{{!-- 	
+	<!--Top Menu-->
+	<div class="topMenu">
+		<div class="container">
+			<ul class="clearfix">
+				 <li><a href="#">Personal</a></li>
+			     <li><a href="#">Small Business</a></li>
+			     <li><a href="#">Wealth Management</a></li>
+			     <li><a href="#">Businesses & Institutes</a></li>
+			</ul>
+		</div>
+	</div>
+	 --}}
+	   <!--Header-->
+    <div class="header clearfix">
+      <div class="container">
+        <div class="logo"><a href="/"><img src="/images/logo-shop.svg"></a></div>
+              <div class="hamburger-menu">
+                <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+        <div class="header-right">
+          <a href="#" class="contact-btn">Contact Us</a>
+          <a href="/open-account" class="open-btn">SignUp</a>
+          {{#unless loggedIn}}<a href="/login" class="login-btn">Login</a>{{/unless}}
+          {{#if loggedIn}}<a href="/app/profile" class="login-btn" style="margin: 0 10px;">Profile</a>
+          <a href="/logout" class="login-btn">Logout</a>{{/if}}
+        </div>
+
+        <div class="main-menu">
+          <ul class="clearfix">
+			<li><a href="#">Women</a></li>
+			<li><a href="#">Man</a></li>
+			<li><a href="#">Kids</a></li>
+				<li class="menu-cta account"><a href="/open-account">Open an Account</a></li>
+				<li class="menu-cta login"><a href="/login">Login</a></li>
+			<li><a href="#">More</a></li>			 
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+
+
+	<!--container-wrap--> 
+	<section class="sa_container-wrap sa_blue-head">
+		<div class="sa_wrapper clearfix">
+			
+			<div class="sa_section-title">
+				<h1>Open a New Account</h1>
+				<span>Welcome. Apply in just minutes.</span>
+			</div>
+			
+			<!--section-account-details-->
+			<div class="sa_section-account-details">
+            	<form action="ecommerce-index.html" method="post">
+					<div class="sa_input-container">
+						<div class="sa_account-details-box">
+							<div class="sa_account-box-head">
+								<strong>PERSONAL INFORMATION</strong>
+								
+							</div>
+
+							<div class="sa_formRow">
+								<label>User Name</label>
+								<input type="text" placeholder="User Name" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+
+							<div class="sa_formRow">
+								<label>Email</label>
+								<input type="email" placeholder="Email" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+
+							<div class="sa_formRow">
+								<label>Password</label>
+								<input type="password" placeholder="Password" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+
+							<div class="sa_formRow">
+								<label>Repeat Password</label>
+								<input type="password" placeholder="Repeat Password" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+
+							<div class="sa_formRow">
+								<label>First Name</label>
+								<input type="text" placeholder="First Name" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>Last Name</label>
+								<input type="text" placeholder="Last Name" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>Phone</label>
+								<input type="tel" placeholder="Phone" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+
+						</div>
+
+						<div class="sa_account-details-box">
+							<div class="sa_account-box-head">
+								<strong>SHIPPING INFORMATION</strong>
+								
+							</div>
+
+							<div class="sa_formRow">
+								<label>Address1</label>
+								<input type="text" placeholder="Address1" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>Address2</label>
+								<input type="text" placeholder="Address2" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>City</label>
+								<select>
+                                	<option>City</option>
+                                    <option>New York City</option>
+                                    <option>Albany</option>
+                                    <option>Buffalo</option>
+                                </select>
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>State</label>
+								<select>
+                                	<option>State</option>
+                                    <option>New York</option>
+                                    <option>Florida</option>
+                                    <option>California</option>
+                                </select>
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                             <div class="sa_formRow">
+								<label>Country</label>
+								<select>
+                                	<option>Country</option>
+                                    <option>United States</option>
+                                    <option>France</option>
+                                    <option>Israel</option>
+                                </select>
+								<div class="sa_inputLine"></div>
+							</div>
+
+						</div>
+
+						<div class="sa_account-details-box">
+							<div class="sa_account-box-head">
+								<strong>PAYMENT DETAILS</strong>
+							</div>
+
+							<div class="sa_formRow">
+								<label>Credit Card Type</label>
+								<select>
+                                	<option>Credit Card Type</option>
+                                    <option>Visa</option>
+                                    <option>Mastercard</option>
+                                    <option>American Express</option>
+                                </select>
+								<div class="sa_inputLine"></div>
+							</div>
+
+							<div class="sa_formRow">
+								<label>Credit Card Number</label>
+								<input type="number" placeholder="Credit Card Number" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>Experation Date</label>
+								<input type="text" placeholder="Experation Date" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>Secret Code</label>
+								<input type="text" placeholder="Secret Code" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+                            <div class="sa_formRow">
+								<label>Name On Card</label>
+								<input type="text" placeholder="Name On Card" value="" onfocus="this.placeholder = ''">
+								<div class="sa_inputLine"></div>
+							</div>
+                            
+						</div>
+					</div>
+					
+					<input type="submit" class="sa_cta-btn sa_large-center" value="Create an Account">
+                
+                </form>
+			</div>
+			<!--section-account-details-->
+			
+			
+		</div>
+	</section> 
+	<!--container-wrap-->
+    
+    
+    <!--footer-wrap-->
+    	<div class="sa_footer-wrap">
+        	<div class="sa_wrapper clearfix">
+            
+            	<!--footer-widget-->
+            		<div class="sa_footer-widget">
+                    	<h6>HELP & INFORMATION</h6>
+                        <ul>
+                            <li><a href="">Help</a></li>
+                            <li><a href="">Track Order</a></li>
+                            <li><a href="">Delivery & Returns</a></li>
+                            <li><a href="">10% Student Discount</a></li>
+                        </ul>
+                    </div>
+                <!--footer-widget-->
+                
+                <!--footer-widget-->
+            		<div class="sa_footer-widget">
+                    	<h6>MORE FROM US</h6>
+                        <ul>
+                            <li><a href="">Gift vouchers</a></li>
+                            <li><a href="">Mobile Apps</a></li>
+                            <li><a href="">Our Marketplace</a></li>
+                        </ul>
+                    </div>
+                <!--footer-widget-->
+                
+                
+                
+                <!--footer-widget-->
+            		<div class="sa_footer-widget">
+                    	<h6>SHOPPING FROM</h6>
+                        <form action="" method="post"> 
+							
+                            <!--shop-location-->                        	
+                            	<div class="sa_shop-location">
+                                	<label>You're in</label>
+                                    <select>
+                                    	<option>Israel</option>
+                                        <option>Brazil</option>
+                                        <option>Chile</option>
+                                    </select>
+                                </div>
+                            <!--shop-location-->
+                                                  
+                            <!--search-box-->
+                                <div class="sa_search-box">                                    
+                                    <input type="text" onfocus="this.placeholder=''" placeholder="Search…">
+                                    <button type="submit"><img src="../../images/search.svg" alt=""></button>
+                                </div>
+                            <!--search-box-->
+                       </form> 
+                    </div>
+                <!--footer-widget-->
+                
+            </div>
+        </div>
+    <!--footer-wrap-->
+    
+    
+    <a href="../security-assessment.html" class="shield" id = "Shield">
+    	<img src="../../images/shield.png">
+    </a>
+    
+</div>    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="../../js/init.js"></script>
+    
+</body>
+</html>
